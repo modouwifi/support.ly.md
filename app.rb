@@ -13,8 +13,6 @@ get '/' do
 end
 
 post '/support' do
-  p params
-
   api_key = ENV["POSTMARK_API_KEY"]
   client = Postmark::ApiClient.new(api_key)
   client.deliver(from: 'cs@mochui.net',
