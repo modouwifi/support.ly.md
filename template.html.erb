@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>support</title>
+  </head>
+  <body>
+    <form action="/support" method="post">
+      <table>
+        <thead>please kindly provide info below:</thead>
+        <tbody>
+          <tr>
+            <th>your name</th>
+            <td>
+              <input type="text" placeholder="your name" name="name" id="form-name"/>
+            </td>
+          </tr>
+          <tr>
+            <th>SN number</th>
+            <td>
+              <input type="text" placeholder="sn number" name="sn" id="form-sn"/>
+            </td>
+          </tr>
+          <tr>
+            <th>your email address</th>
+            <td>
+              <input type="text" placeholder="e.g. nihao@163.com" name="email" id="form-email"/>
+            </td>
+          </tr>
+          <tr>
+            <th>reason</th>
+            <td>
+              <select name="support-type" id="form-support-type">
+                <option value="cancel-order">cancel order</option>
+                <option value="return-item">return item</option>
+                <option value="replace-item">replace item</option>
+                <option value="other">other</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>additional message</th>
+            <td>
+              <textarea name="description" id="form-description" cols="30" rows="10"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <input type="submit" value="submit"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>
