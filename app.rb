@@ -7,10 +7,7 @@ configure :production do
 end
 
 get '/' do
-  template = File.read(File.expand_path("../template.html.erb", __FILE__))
-  renderer = ERB.new(template)
-
-  renderer.result
+  erb :template
 end
 
 post '/support' do
