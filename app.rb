@@ -9,10 +9,28 @@ end
 helpers Sinatra::Param
 
 get '/' do
-  erb :template
+  default_params =  {
+    :name => nil,
+    :phone => nil,
+    :email => nil,
+    "order_number".to_sym => nil,
+    "support_type".to_sym => nil,
+    "additional_info".to_sym => nil
+  }
+
+  erb :template, locals: default_params.merge(params)
 end
 
 post '/support' do
+  p params
+
+  param :name, String, required: true
+  param :phone, String, required: true
+  param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  param "order-number", String
+
+  param "support-type", String, in: %w{refund-not-received refund-received replace repair other}, required: true
+
   api_key = ENV["POSTMARK_API_KEY"]
 
   if api_key
