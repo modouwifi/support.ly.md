@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>魔豆-售后申请</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" charset="utf8">
-    <link rel="stylesheet" href="assets/screen.css" type="text/less"/>
-    <link rel="stylesheet" href="assets/jquery.FloatLabel.css" type="text/less"/>
+    <link rel="stylesheet" href="assets/screen.css" type="text/css"/>
     <script src="assets/jquery-2.0.3.min.js" type="text/javascript"></script>
     <script src="assets/jquery.FloatLabel.js" type="text/javascript"></script>
     <script src="assets/jquery.FloatOption.js" type="text/javascript"></script>
@@ -12,50 +12,97 @@
   </head>
 
   <body>
-    <form class="form-wrapper" action="/support" method="POST">
-      <p>尊敬的用户尊敬的用户尊敬的用户尊敬的用户尊敬的用户尊敬的用户尊敬的用户</p>
+    <form class="form-wrapper" action="/support" method="post">
+      <div class="form-title">售后申请</div>
+      <p>尊敬的用户，感谢您选择魔豆提供的产品和服务，如需售后服务请填写并提交下列信息，我们将在第一时间联系您。</p>
       <!-- add class "error" on wrappers to mark error input -->
       <div class="js-float-label-wrapper">
-        <label for="name">您的名字</label>
-        <input id="form-name" type="text" spellcheck="false"></input>
-      </div>
-
-      <div class="js-float-label-wrapper">
-        <label class="float-lable" for="order-number">订单号</label>
-        <input id="form-order-number" type="text" spellcheck="false"></input>
-      </div>
-
-      <div class="js-float-label-wrapper">
-        <label class="float-lable" for="sn">设备序列号</label>
-        <input id="form-sn" type="text" spellcheck="false"></input>
-      </div>
-
-      <div class="js-float-label-wrapper">
-        <label class="float-lable" for="email">您的邮箱</label>
-        <input id="form-email" type="text" spellcheck="false"></input>
+        <label class="float-lable" for="name">您的名字</label>
+        <input id="form-name" type="text" spellcheck="false" autocomplete="off"></input>
+        <div class="error-message">请输入您的名字</div>
       </div>
 
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="phone">您的电话号码</label>
-        <input id="form-phone" type="text" spellcheck="false"></input>
-      </div>
-
-      <div class="js-float-option-wrapper">
-        <label class="float-label" for="support-type">售后服务类型</label>
-        <select id="form-support-type">
-          <option value="" disabled selected style="display:none;">请选择</option>
-          <option>我要退款（未收到货）</option>
-          <option>我要退款（已收到货）</option>
-          <option>我要换货</option>
-          <option>其他</option>
-        </select>
+        <input id="form-phone" type="text" spellcheck="false" autocomplete="off"></input>
+        <div class="error-message">请输入正确的电话号码</div>
       </div>
 
       <div class="js-float-label-wrapper">
-        <label class="float-lable" for="comment">备注</label>
-        <input id="form-comment" type="text" spellcheck="false"></input>
+        <label class="float-lable" for="email">您的邮箱(选填)</label>
+        <input id="form-email" type="text" spellcheck="false" autocomplete="off"></input>
+        <div class="error-message">请输入正确的邮箱地址</div>
       </div>
 
+      <div class="js-float-label-wrapper">
+        <label class="float-lable" for="order-number">订单号</label>
+        <input id="form-order-number" type="text" spellcheck="false" autocomplete="off"></input>
+        <div class="error-message">请输入正确的订单号</div>
+      </div>
+<!-- 
+      <div class="js-float-label-wrapper">
+        <label class="float-lable" for="sn">设备序列号(选填)</label>
+        <input id="form-sn" type="text" spellcheck="false" autocomplete="off"></input>
+      </div>
+ -->
+      <div class="js-float-option-wrapper">
+        <label class="float-label" for="reason">售后服务类型</label>
+        <select id="form-reason">
+          <option value="" disabled selected style="display:none;">请选择</option>
+          <option>我要退款(未收到货)</option>
+          <option>我要退货(已收到货)</option>
+          <option>我要换货</option>
+          <option>我要维修</option>
+          <option>其他</option>
+        </select>
+
+        <div class="reason-description">
+          <div class="reason-description-refund">
+            <p>退款申请须知:</p>
+            <ol>
+              <li>所购买商品在发货前可办理退款。我们会10个工作日内退款至购买账户上。</li>
+            </ol>
+          </div>
+          <div class="reason-description-return">
+            <p>7日包退申请须知:</p>
+            <ol>
+              <li>我们在收到退回商品，并检查确认包装附件齐全后，会在1-2个工作日内退款至购买账户上。</li>
+              <li>如果我们收到的退回商品的包装或附件缺失，可能无法向您退回全款。</li>
+              <li>如果购买时您有要求开具发票，退货时请您将发票一并寄回。</li>
+              <li>如果商品不存在质量问题，7日内退货所产生的快递费需由您来承担。</li>
+              <li>如果商品存在非人为使用不当造成的质量问题，7日内退货所产生的快递费由我们承担。</li>
+              <li>请在包装盒内附纸注明：订单号、姓名、联系方式(手机)、所需办理事项。</li>
+              <li>不能办理7日内退货的情况(<a href="http://www.modouwifi.com/service-doc.html">查看详细</a>)。</li>
+            </ol>
+          </div>
+          <div class="reason-description-exchange">
+            <p>15日包换申请须知:</p>
+            <ol>
+              <li>15天内换货不支持无理由退换。</li>
+              <li>我们收到退回商品，检查确认包装附件齐全，并确实存在质量瑕疵，会另寄出同型号新品，所产生快递费由我们承担。</li>
+              <li>如包装不全或检测未发现质量瑕疵，我们会将商品寄回给您，所产生快递费由您承担。</li>
+              <li>请在包装盒内附纸注明：订单号、姓名、联系方式(手机)、所需办理事项。</li>
+              <li>不能办理15日内退货的情况(<a href="http://www.modouwifi.com/service-doc.html">查看详细</a>)。</li>
+            </ol>
+          </div>
+          <div class="reason-description-repair">
+            <p>1年主机包修须知</p>
+            <ol>
+              <li>请在包装盒内附纸注明：订单号、姓名、联系方式(手机)、存在故障现象。</li>
+              <li>我们收到商品后会先检查需维修的部件，并告知您属于免费维修还是收费维修及维修费用。</li>
+              <li>付费维修时，我们会在收到您的付款后开始维修。</li>
+              <li>如人为使用不当造成的质量问题，需由您承担快递费用。</li>
+              <li>如产品本身存在质量问题，我们将承担快递费用。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-float-label-wrapper">
+        <label class="float-lable" for="comment">备注(可选)</label>
+        <input id="form-email" type="text" spellcheck="false" autocomplete="off"></input>
+      </div>
+      
       <input id="send" type="submit" value="发出" />
     </form>
     <script type="text/javascript">
