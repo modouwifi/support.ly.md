@@ -4,6 +4,7 @@ ruby '2.0.0'
 
 gem 'newrelic_rpm'
 gem 'sinatra'
+gem 'sinatra-param', github: 'mattt/sinatra-param'
 gem 'postmark'
 
 group :development, :test do

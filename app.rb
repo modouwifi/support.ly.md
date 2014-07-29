@@ -1,5 +1,5 @@
 require "sinatra"
-require "erb"
+require "sinatra/param"
 require "postmark"
 
 configure :production do
