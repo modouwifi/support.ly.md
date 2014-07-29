@@ -6,6 +6,7 @@ gem 'newrelic_rpm'
 gem 'sinatra'
 gem 'postmark'
 
-group :development do
+group :development, :test do
   gem 'shotgun'
+  gem 'rspec'
 end
