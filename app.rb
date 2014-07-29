@@ -6,18 +6,37 @@ configure :production do
   require "newrelic_rpm"
 end
 
+configure :development do
+  set :show_exceptions, false
+  set :raise_errors, true
+end
+
 helpers Sinatra::Param
 
-get '/' do
-  default_params =  {
-    :name => nil,
-    :phone => nil,
-    :email => nil,
-    "order_number".to_sym => nil,
-    "support_type".to_sym => nil,
-    "additional_info".to_sym => nil
-  }
+helpers do
+  def default_params
+    {
+      :name => nil,
+      :phone => nil,
+      :email => nil,
+      :sn => nil,
+      "order_number".to_sym => nil,
+      "support_type".to_sym => nil,
+      "additional_info".to_sym => nil,
+      :error => nil
+    }
+  end
+end
 
+set :raise_sinatra_param_exceptions, true
+
+error Sinatra::Param::InvalidParameterError do
+  p params.merge({ error: env['sinatra.error'].param })
+
+  erb :template, locals: params.merge({ error: env['sinatra.error'].param })
+end
+
+get '/' do
   erb :template, locals: default_params.merge(params)
 end
 
@@ -27,9 +46,10 @@ post '/support' do
   param :name, String, required: true
   param :phone, String, required: true
   param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-  param "order-number", String
+  param :order_number, String
+  param :additional_info, String, required: true
 
-  param "support-type", String, in: %w{refund-not-received refund-received replace repair other}, required: true
+  param "support_type", String, in: %w{refund-not-received refund-received replace repair other}, required: true, blank: false
 
   api_key = ENV["POSTMARK_API_KEY"]
 
