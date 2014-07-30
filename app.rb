@@ -20,9 +20,9 @@ helpers do
       :phone => nil,
       :email => nil,
       :sn => nil,
-      "order_number".to_sym => nil,
-      "support_type".to_sym => nil,
-      "additional_info".to_sym => nil,
+      :order_number => nil,
+      :support_type => nil,
+      :additional_info => nil,
       :error => nil
     }
   end
