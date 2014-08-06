@@ -36,7 +36,7 @@
 
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="order-number">您的订单号 或 设备序列号(S/N)</label>
-        <input id="form-order-number" name="order-number" type="text" spellcheck="false" autocomplete="off" value="<%= order_number %>"></input>
+        <input id="form-order-number" name="order_number" type="text" spellcheck="false" autocomplete="off" value="<%= order_number %>"></input>
         <div class="error-message">请输入正确的订单号或设备序列号</div>
       </div>
 
@@ -44,11 +44,11 @@
         <label class="float-label" for="reason">售后服务类型</label>
         <select name="reason" id="form-reason">
           <option value="" disabled selected style="display:none;">请选择</option>
-          <option>我要退款(未收到货)</option>
-          <option>我要退货(已收到货)</option>
-          <option>我要换货</option>
-          <option>我要维修</option>
-          <option>其他</option>
+          <option value="refund-not-received">我要退款(未收到货)</option>
+          <option value="refund-received">我要退货(已收到货)</option>
+          <option value="replace">我要换货</option>
+          <option value="repair">我要维修</option>
+          <option value="other">其他</option>
         </select>
 
         <div class="reason-description">

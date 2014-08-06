@@ -21,8 +21,8 @@ helpers do
       :email => nil,
       :sn => nil,
       :order_number => nil,
-      :support_type => nil,
-      :additional_info => nil,
+      :reason => nil,
+      :comment => nil,
       :error => nil
     }
   end
@@ -47,9 +47,9 @@ post '/support' do
   param :phone, String, required: true
   param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   param :order_number, String
-  param :additional_info, String, required: true
+  param :comment, String
 
-  param "support_type", String, in: %w{refund-not-received refund-received replace repair other}, required: true, blank: false
+  param "reason", String, in: %w{refund-not-received refund-received replace repair other}, required: true, blank: false
 
   api_key = ENV["POSTMARK_API_KEY"]
 
