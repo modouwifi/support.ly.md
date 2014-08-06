@@ -56,10 +56,12 @@ post '/support' do
   if api_key
     client = Postmark::ApiClient.new(api_key)
 
+    require "yaml"
+
     client.deliver(from: 'cs@mochui.net',
-                   to: 'afu@forresty.com',
+                   to: 'cs@mochui.net',
                    subject: "support request from #{params['name']}",
-                   text_body: params.inspect)
+                   text_body: params.to_yaml)
   end
 
   'thanks'
