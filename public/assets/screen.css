@@ -425,3 +425,37 @@ textarea:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+/* line 295, ../sass/screen.scss */
+.modal .return {
+  font-size: 14px;
+  font-size: 1.4rem;
+  margin: 0 auto;
+  position: relative;
+  left: -8px;
+  height: 28px;
+  margin-top: 20px;
+  border: 1px solid white;
+  width: 160px;
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition: 0.1s ease-out;
+  -o-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+}
+/* line 305, ../sass/screen.scss */
+.modal .return:hover {
+  background-color: white;
+  color: black;
+}
+/* line 308, ../sass/screen.scss */
+.modal .return:hover a {
+  color: #1297ff;
+}
+/* line 312, ../sass/screen.scss */
+.modal .return a {
+  display: block;
+  padding-left: 4px;
+  height: 100%;
+  width: 100%;
+  line-height: 28px;
+  color: white;
+}
