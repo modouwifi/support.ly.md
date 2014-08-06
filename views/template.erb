@@ -18,25 +18,25 @@
       <!-- add class "error" on wrappers to mark error input -->
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="name">您的名字</label>
-        <input id="form-name" name="name" type="text" spellcheck="false" autocomplete="off"></input>
+        <input id="form-name" name="name" type="text" spellcheck="false" autocomplete="off" value="<%= name %>"></input>
         <div class="error-message">请输入您的名字</div>
       </div>
 
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="phone">您的电话号码</label>
-        <input id="form-phone" name="phone" type="text" spellcheck="false" autocomplete="off"></input>
+        <input id="form-phone" name="phone" type="text" spellcheck="false" autocomplete="off" value="<%= phone %>"></input>
         <div class="error-message">请输入正确的电话号码</div>
       </div>
 
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="email">您的邮箱(选填)</label>
-        <input id="form-email" name="email" type="text" spellcheck="false" autocomplete="off"></input>
+        <input id="form-email" name="email" type="text" spellcheck="false" autocomplete="off" value="<%= email %>"></input>
         <div class="error-message">您输入邮箱地址有误，请检查</div>
       </div>
 
       <div class="js-float-label-wrapper">
         <label class="float-lable" for="order-number">您的订单号 或 设备序列号(S/N)</label>
-        <input id="form-order-number" name="order-number" type="text" spellcheck="false" autocomplete="off"></input>
+        <input id="form-order-number" name="order-number" type="text" spellcheck="false" autocomplete="off" value="<%= order_number %>"></input>
         <div class="error-message">请输入正确的订单号或设备序列号</div>
       </div>
 
