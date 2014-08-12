@@ -45,7 +45,7 @@ post '/support' do
 
   param :name, String, required: true
   param :phone, String, required: true
-  param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  # param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   param :order_number, String
   param :comment, String
 
