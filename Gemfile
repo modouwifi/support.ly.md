@@ -6,6 +6,7 @@ gem 'newrelic_rpm'
 gem 'sinatra'
 gem 'sinatra-param', github: 'mattt/sinatra-param'
 gem 'postmark'
+gem 'unicorn'
 # gem 'lotus-model'
 
 group :development, :test do
