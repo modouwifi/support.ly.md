@@ -92,6 +92,14 @@ $(document).ready(function() {
       } else {
         return true;
       }
+    },
+    "comment": function () {
+      if ($("#form-comment").val() == '') {
+        $("#form-comment").parent().addClass("error");
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 
