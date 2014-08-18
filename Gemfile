@@ -6,11 +6,11 @@ gem 'newrelic_rpm'
 gem 'sinatra'
 gem 'sinatra-param', github: 'mattt/sinatra-param'
 gem 'postmark'
-gem 'lotus-model'
+# gem 'lotus-model'
 
 group :development, :test do
   gem 'shotgun'
-  gem 'rspec', '~> 2.12.0'
-  gem 'guard'
-  gem 'guard-rspec'
+  # gem 'rspec', '~> 2.12.0'
+  # gem 'guard'
+  # gem 'guard-rspec'
 end
