@@ -20,7 +20,20 @@ $(document).ready(function() {
     } else if($(this)[0].selectedIndex >= 1 && $(this)[0].selectedIndex <= 4) {
       $(".reason-description").show(0);
       $(".reason-description").children().hide(0);
-      $(".reason-description-refund").show(0);
+
+      switch ($(this)[0].selectedIndex) {
+      case 1:
+        $(".reason-description-refund").show(0);
+        break;
+      case 2:
+        $(".reason-description-return").show(0);
+      case 3:
+        $(".reason-description-exchange").show(0);
+      case 4:
+        $(".reason-description-repair").show(0);
+      default:
+        // should not reach here
+      }
     } else if($(this)[0].selectedIndex == 5) {
       $(".reason-description").hide(0);
     }
