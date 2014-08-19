@@ -129,7 +129,7 @@ $(document).ready(function() {
         url: "/support",
         data : $(this).serializeArray(),
       }).done(function () {
-        var modal = '<div class="modal">您的售后申请已提交，<br>我们将在第一时间与您联系。<div class="return"><a href="http://www.modouwifi.com/order-list.html">返回 我的订单</a></div></div>',
+        var modal = '<div class="modal">您的售后申请已提交，<br>我们会在1-3个工作日内处理，请留意您的邮件信息或电话信息。<div class="return"><a href="http://www.modouwifi.com/order-list.html">返回 我的订单</a></div></div>',
         blackout='<div class="blackout"></div>';
         $("body").prepend(blackout).hide().fadeIn().append(modal);
       });
