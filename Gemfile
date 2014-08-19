@@ -8,6 +8,7 @@ gem 'sinatra-param', github: 'mattt/sinatra-param'
 gem 'postmark'
 gem 'unicorn'
 gem 'rack-attack'
+gem 'activesupport'
 # gem 'lotus-model'
 
 group :development, :test do

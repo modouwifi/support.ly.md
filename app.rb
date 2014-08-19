@@ -4,7 +4,11 @@ require "postmark"
 
 require "rack/attack"
 
+require "active_support"
+
 use Rack::Attack
+
+Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
 Rack::Attack.blacklist('block bad guys') do |req|
   # Requests are blocked if the return value is truthy
@@ -13,6 +17,19 @@ Rack::Attack.blacklist('block bad guys') do |req|
   ips = YAML.load_file(File.expand_path('../data/blacklisted_ips.yml', __FILE__))
 
   ips.include?(req.ip)
+end
+
+### Throttle Spammy Clients ###
+
+# If any single client IP is making tons of requests, then they're
+# probably malicious or a poorly-configured scraper. Either way, they
+# don't deserve to hog all of the app server's CPU. Cut them off!
+
+# Throttle all requests by IP
+#
+# Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
+Rack::Attack.throttle('req/ip', :limit => 10, :period => 300) do |req|
+  req.ip
 end
 
 configure :production do
