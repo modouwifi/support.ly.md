@@ -6,7 +6,7 @@ GIT
       sinatra (~> 1.3)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     json (1.8.1)
     kgio (2.8.0)
@@ -15,6 +15,8 @@ GEM
       json
       rake
     rack (1.5.2)
+    rack-attack (4.1.0)
+      rack
     rack-protection (1.5.3)
       rack
     raindrops (0.11.0)
@@ -37,6 +39,7 @@ PLATFORMS
 DEPENDENCIES
   newrelic_rpm
   postmark
+  rack-attack
   shotgun
   sinatra
   sinatra-param!

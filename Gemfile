@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.0.0'
 
@@ -7,6 +7,7 @@ gem 'sinatra'
 gem 'sinatra-param', github: 'mattt/sinatra-param'
 gem 'postmark'
 gem 'unicorn'
+gem 'rack-attack'
 # gem 'lotus-model'
 
 group :development, :test do

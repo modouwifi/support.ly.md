@@ -2,6 +2,19 @@ require "sinatra"
 require "sinatra/param"
 require "postmark"
 
+require "rack/attack"
+
+use Rack::Attack
+
+Rack::Attack.blacklist('block bad guys') do |req|
+  # Requests are blocked if the return value is truthy
+  require "yaml"
+
+  ips = YAML.load_file(File.expand_path('../data/blacklisted_ips.yml', __FILE__))
+
+  ips.include?(req.ip)
+end
+
 configure :production do
   require "newrelic_rpm"
 end
