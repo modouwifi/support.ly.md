@@ -58,10 +58,10 @@ post '/support' do
 
     require "yaml"
 
-    client.deliver(from:        "cs@mochui.net",
-                   to:          "cs@mochui.net",
-                   subject:     "support request from #{params['name']}",
-                   text_body:   params.inspect)
+    # client.deliver(from:        "cs@mochui.net",
+    #                to:          "cs@mochui.net",
+    #                subject:     "support request from #{params['name']}",
+    #                text_body:   params.inspect)
   end
 
   'thanks'
