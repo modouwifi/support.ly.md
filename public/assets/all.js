@@ -62,7 +62,7 @@ $(document).ready(function() {
       }
     },
     "email": function () {
-      if (validateEmail($("#form-email").val()) || $("#form-email").val() == "") {
+      if (validateEmail($("#form-email").val())) {
         return true;
       } else {
         $("#form-email").parent().addClass("error");
