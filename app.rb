@@ -88,6 +88,7 @@ post '/support' do
 
     client.deliver(from:        "cs@mochui.net",
                    to:          "cs@mochui.net",
+                   reply_to:    params['email'],
                    subject:     "support request from #{params['name']}",
                    text_body:   params.inspect)
   end
