@@ -94,7 +94,7 @@ post '/support' do
 
     client.deliver(from:        "cs@mochui.net",
                    to:          "cs@mochui.net",
-                   reply_to:    ticket.user_email,
+                   headers:     { 'Name' => 'X-Modouwifi-From', 'Value' => ticket.user_email },
                    subject:     "support request from #{ticket.user_name}",
                    text_body:   ticket.to_human_readable_text)
   end
