@@ -74,8 +74,9 @@ end
 post '/support' do
   p params
 
-  ticket = Ticket.create_from_params(params)
+  ticket = Modou::Ticket.create_from_params(params)
   p ticket
+  puts ticket.to_human_readable_text
 
   param :name, String, required: true
   param :phone, String, required: true
