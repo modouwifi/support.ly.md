@@ -25,6 +25,9 @@ module Modou
         订单号: #{@order_number}
         售后服务类型: #{support_type_in_chinese}
         备注: #{@additional_info}
+
+        -----------------
+        以上信息由 http://support.ly.md 自动生成
       }.gsub(/^\s+/, '')
     end
 

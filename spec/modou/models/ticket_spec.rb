@@ -76,6 +76,9 @@ module Modou
           订单号: 123456789012
           售后服务类型: 我要退款(未收到货)
           备注: it sucks
+
+          -----------------
+          以上信息由 http://support.ly.md 自动生成
         }.gsub(/^\s+/, '')
 
         subject.to_human_readable_text.should == expected
