@@ -6,6 +6,8 @@ require "rack/attack"
 
 require "active_support"
 
+require_relative 'app/modou/models/ticket'
+
 use Rack::Attack
 
 Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
@@ -49,7 +51,6 @@ helpers do
       :name => nil,
       :phone => nil,
       :email => nil,
-      :sn => nil,
       :order_number => nil,
       :reason => nil,
       :comment => nil,
@@ -73,13 +74,17 @@ end
 post '/support' do
   p params
 
+  ticket = Ticket.create_from_params(params)
+  p ticket
+
   param :name, String, required: true
   param :phone, String, required: true
   param :email, String, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   param :order_number, String
   param :comment, String, required: true
 
-  param "reason", String, in: %w{refund-not-received refund-received replace repair other}, required: true, blank: false
+  valid_reasons = %w{ refund-not-received refund-received replace repair other }.freeze
+  param "reason", String, in: valid_reasons, required: true, blank: false
 
   api_key = ENV["POSTMARK_API_KEY"]
 
@@ -88,9 +93,9 @@ post '/support' do
 
     client.deliver(from:        "cs@mochui.net",
                    to:          "cs@mochui.net",
-                   reply_to:    params['email'],
-                   subject:     "support request from #{params['name']}",
-                   text_body:   params.inspect)
+                   reply_to:    ticket.user_email,
+                   subject:     "support request from #{ticket.user_name}",
+                   text_body:   ticket.to_human_readable_text)
   end
 
   'thanks'
