@@ -29,20 +29,24 @@ class QiniuCDN
 
     headers.delete('Content-Length')
 
-    body_string = body.join
+    if body.respond_to? :join
+      body_string = body.join
 
-    doc = Nokogiri::HTML(body_string)
-    doc.css('link').select { |link| link['href'] =~ /assets/ }.map do |link|
-      replace_asset!(body_string, link['href'])
-    end
-    doc.css('a').select { |a| a['href'] =~ /assets/ }.map do |a|
-      replace_asset!(body_string, a['href'])
-    end
-    doc.css('script').select { |node| node['src'] =~ /assets/ }.map do |node|
-      replace_asset!(body_string, node['src'])
-    end
+      doc = Nokogiri::HTML(body_string)
+      doc.css('link').select { |link| link['href'] =~ /assets/ }.map do |link|
+        replace_asset!(body_string, link['href'])
+      end
+      doc.css('a').select { |a| a['href'] =~ /assets/ }.map do |a|
+        replace_asset!(body_string, a['href'])
+      end
+      doc.css('script').select { |node| node['src'] =~ /assets/ }.map do |node|
+        replace_asset!(body_string, node['src'])
+      end
 
-    [status_code, headers, [body_string]]
+      [status_code, headers, [body_string]]
+    else
+      [status_code, headers, body]
+    end
   end
 end
 
