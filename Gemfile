@@ -10,10 +10,13 @@ gem 'unicorn'
 gem 'rack-attack'
 gem 'activesupport'
 # gem 'lotus-model'
+gem 'nokogiri'
+gem 'qiniu'
 
 group :development, :test do
   gem 'shotgun'
   gem 'rspec', '~> 2.12.0'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'dotenv'
 end
