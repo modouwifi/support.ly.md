@@ -8,6 +8,46 @@ require "active_support"
 
 require_relative 'app/modou/models/ticket'
 
+class QiniuCDN
+  require "nokogiri"
+
+  def initialize(app)
+    require "qiniu"
+    Qiniu.establish_connection! access_key: ENV['QINIU_ACCESS_KEY'], secret_key: ENV['QINIU_SECRET_KEY']
+
+    @app = app
+  end
+
+  def replace_asset!(body_string, asset_path)
+    asset_path = asset_path[1..-1] if asset_path[0] == '/'
+    cdn_url = "http://#{ENV['QINIU_BUCKET']}.qiniudn.com/#{asset_path}"
+    body_string.gsub!(asset_path, Qiniu::Auth.authorize_download_url(cdn_url))
+  end
+
+  def call(env)
+    status_code, headers, body = @app.call(env)
+
+    headers.delete('Content-Length')
+
+    body_string = body.join
+
+    doc = Nokogiri::HTML(body_string)
+    doc.css('link').select { |link| link['href'] =~ /assets/ }.map do |link|
+      replace_asset!(body_string, link['href'])
+    end
+    doc.css('a').select { |a| a['href'] =~ /assets/ }.map do |a|
+      replace_asset!(body_string, a['href'])
+    end
+    doc.css('script').select { |node| node['src'] =~ /assets/ }.map do |node|
+      replace_asset!(body_string, node['src'])
+    end
+
+    [status_code, headers, [body_string]]
+  end
+end
+
+use QiniuCDN
+
 use Rack::Attack
 
 Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
