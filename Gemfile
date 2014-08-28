@@ -19,4 +19,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'dotenv'
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
