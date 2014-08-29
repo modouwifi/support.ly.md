@@ -19,17 +19,22 @@ class QiniuCDN
   end
 
   def replace_asset!(body_string, asset_path)
-    asset_path = asset_path[1..-1] if asset_path[0] == '/'
-    cdn_url = "http://#{ENV['QINIU_BUCKET']}.qiniudn.com/#{asset_path}"
+    if asset_path[0] == '/'
+      cdn_path = asset_path[1..-1]
+    else
+      cdn_path = asset_path
+    end
+    cdn_url = "http://#{ENV['QINIU_BUCKET']}.qiniudn.com/#{cdn_path}"
+
     body_string.gsub!(asset_path, Qiniu::Auth.authorize_download_url(cdn_url))
   end
 
   def call(env)
     status_code, headers, body = @app.call(env)
 
-    headers.delete('Content-Length')
-
     if body.respond_to? :join
+      headers.delete('Content-Length')
+
       body_string = body.join
 
       doc = Nokogiri::HTML(body_string)
